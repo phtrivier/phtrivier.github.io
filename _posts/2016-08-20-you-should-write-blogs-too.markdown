@@ -2,7 +2,6 @@
 layout: post
 title:  "You should write blogs, too..."
 date:   2016-08-20 10:10:10 +0200
-categories: hello
 ---
 Or, at least, Steve Yegge <a href="https://sites.google.com/site/steveyegge2/you-should-write-blogs">said so</a> - before completely stopping to write blogs a couple months (years ?) ago (probably after the infamous <a href="http://code.danyork.com/2011/11/11/the-google-vs-amazon-platform-rant-a-must-read-from-steve-yegge/">"Amazon rant"</a> incident.
 
