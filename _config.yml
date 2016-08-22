@@ -16,7 +16,8 @@
 title: You should write blogs, too...
 email: phtrivier@yahoo.fr
 description: > # this means to ignore newlines until "baseurl:"
-   I write blogs, because Steve Yegge said I should.
+   A blog about programming in general.
+   Because Steve Yegge said I should write one.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://example.com" # the base hostname & protocol for your site
 #twitter_username: phtrivier
@@ -24,4 +25,6 @@ github_username:  phtrivier
 
 # Build settings
 markdown: kramdown
-highlighter: pygments
+
+gems:
+  - jekyll-seo-tag

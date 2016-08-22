@@ -2,7 +2,7 @@
 layout: post
 title:  "Elm and the \"tail end\""
 date:   2016-08-21 22:23:00 +0200
-tags: elm waitbutwhy
+tags: elm, waitbutwhy
 ---
 ## Wait But Why's "tail end" vizualisation
 
