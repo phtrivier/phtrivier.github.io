@@ -103,13 +103,146 @@ update action model =
 
 ### _Wait, aren't we suppose to display stuff, too ?_
 
-Yes, because it's a Web application. You'll have to display
+Yes, because it's a Web application. We'll display the simplest thing that can possibly work : a div with div of fixed size.
+(Later we will use images.)
 
-TODO(pht) adapt https://gitlab.com/phtrivier/longtail/blob/master/src/elm/Tailend.elm to
-display something simple.
+We'll be using [flex-box](https://css-tricks.com/snippets/css/a-guide-to-flexbox/), because CSS is voodoo magic to me otherwise.
+
+#### Implementing a `view` function
+
+``` haskell
+view : Model -> Html Msg
+view model =
+    div [ class "page" ]
+        [ tailendView model ]
+
+
+tailendView : Model -> Html Msg
+tailendView model =
+    let
+        crossed =
+            model.age
+
+        uncrossed =
+            model.expected - model.age
+    in
+        div [ class "tailend-view" ]
+            ((List.repeat crossed crossedItem) ++ (List.repeat uncrossed uncrossedItem))
+
+
+crossedItem : Html Msg
+crossedItem =
+    div [ class "tailend-box" ]
+        [ div [ class "tailend-cross" ]
+           [ text "X" ]
+        ]
+
+
+uncrossedItem : Html Msg
+uncrossedItem =
+    div [ class "tailend-box" ]
+        [ div [ class "tailend-item" ]
+           [ text "O" ]
+        ]
+```
+
+Some things to note:
+
+* the goal of the 'View' function is to produce the whole page as a tree of 'virtual' DOM elements
+* the function returns `Html Msg`, because the DOM will be used to send `Msg` to your application when your users interact with it. More on that later.
+* `div` is a function from the `Html` package that produces virtual DOM elements. The [package](http://package.elm-lang.org/packages/elm-lang/html/1.1.0/Html#Html) has plenty of other functions for most DOM elements. In general those functions take two arguments :
+ * a list of attributes (here, the `class` function from the `Html.Attribute` package is used to set the CSS class
+ * a list of child `Html` nodes (returned by other functions from `Html`. See this `text "X"` stuff ? A virtual DOM nodes that says there should be some, ahem, text. "Turtles all the way down", as they [say](https://en.wikipedia.org/wiki/Turtles_all_the_way_down).)
+
+Also, note that the view is a pure function that only looks at the
+model.  I choose to create local variables that 'translate' the
+`Model` attributes into a sort of "View model".
+
+Those computations would be run *every time* the view has to be re-displayed. This will probably make [casey](https://twitter.com/cmuratori) cry.[^2]
+
+The trick is to convice oneself that it probably does not really matter.
+
+> Don't worry about precomputing values based on state — it's easier to ensure that your UI is consistent if you do all computation within render(). [Facebook team](http://facebook.github.io/react/docs/interactivity-and-dynamic-uis.html)
+
+Plus, if you have heavy things to compute, it is probably possible to cache results in a clever way.
+
+#### Making things pretty
+
+Some styling is of course necessary for that, which we'll keep to a mininum.
+
+Add a CSS file :
+
+``` css
+/* to create in src/css/style.css */
+body {
+    padding: 20px;
+    .container {
+        padding: 20px;
+    }
+}
+
+.page {
+    margin: auto;
+    width: 80%;
+}
+
+.tailend-view {
+    border: 1px solid black;
+    display: flex;
+    flex-direaction: row;
+    flex-wrap: wrap;
+}
+
+.tailend-box {
+    position: relative;
+}
+
+.tailend-item {
+    border: 1px solid green;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+}
+
+.tailend-cross {
+    border: 1px solid red;
+    margin-left: 5px;
+    width: 50px;
+    height: 50px;
+}
+```
+
+And edit your `index.html`
+
+``` html
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>The Tail End</title>
+    <link rel="stylesheet" href="./src/css/style.css" type="text/css"></link>
+    <script type="text/javascript" src="tailend.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">Elm.Main.fullscreen()</script>
+  </body>
+</html>
+
+```
+
+Voila, run `make.sh` again, and you should see something like this :
+
+![A screenshot of a simple tailend]({{ site.url }}/assets/elm-tailend-part-2/tailend_screenshot.png)
+
+Which is not very good looking, but, as far as `elm` is concerned, everything is there.
+We can either make this much prettier (which will only involve CSS), or add some interactivity to the page (in case you want to use other values than 35/90.)
+
+That's what we'll do in next part !
 
 ---
 
 <br/>
 
 [^1] Really, I mean it, *at least*. I don't want to jinx it for anyone. Live long and prosper, etc...
+
+[^2] Seriously, though, give [Handmade Hero](https://handmadehero.org/) a look, if you have like, another couple million hours of you life to spend, or something. Casey Muratori is giving a lot of great insights and advices and programming in a rigourous and non-bullshitty way. What he says mostly applies to native code (in particular games), so it's a rather different world than web dev. And if you're reading this, you probably want to do web dev. So this footnote is 50% name dropping, 50% irrelevant advice. And it's becoming waaay too big.
