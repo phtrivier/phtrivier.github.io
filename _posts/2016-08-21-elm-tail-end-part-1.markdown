@@ -339,7 +339,7 @@ If you want to follow, I'll leave a repository with the code on [github](http://
 
 Next time, we'll actually try and display a "tail end" diagram, using nothing but two integers as a Model !
 
-Stay tuned.
+Stay tuned for [next part](/2016/10/17/elm-tail-end-part-2.html).
 
 ---
 

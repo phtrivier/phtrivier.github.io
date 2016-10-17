@@ -1,12 +1,14 @@
 ---
 layout: post
-title:  "Elm and the \"tail end\" - Part 2 - Displaying a 'tail end'"
+title:  "Elm and the \"tail end\" - Part 2 - Displaying a \"tail end\""
 date:   2016-10-17 11:35:00 +0200
 tags: elm waitbutwhy
 ---
 ## Elm application life cyle
 
-Let's do a first simpler version of our application, that simply displays a hardcoded failend image for a fixed setting.
+_This is part 2 of a series, see [the first part](/2016/08/21/elm-tail-end-part-1) to get the jokes._
+
+Let's do a first simple version of our application, that simply displays a hardcoded failend image for a fixed setting.
 
 The life of a Elm application is described better than I will do by its creator in [The Elm Architecture](https://guide.elm-lang.org/architecture/).
 
