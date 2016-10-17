@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Elm and the \"tail end\""
+title:  "Elm and the \"tail end\" - Part 1 - Setup"
 date:   2016-08-21 22:23:00 +0200
 tags: elm, waitbutwhy
 ---

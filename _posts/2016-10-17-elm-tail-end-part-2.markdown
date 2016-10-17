@@ -1,14 +1,14 @@
 ---
 layout: post
 title:  "Elm and the \"tail end\" - Part 2 - Displaying a 'tail end'"
-date:   2016-08-21 16:14:17 +0200
+date:   2016-10-17 11:35:00 +0200
 tags: elm waitbutwhy
 ---
 ## Elm application life cyle
 
 Let's do a first simpler version of our application, that simply displays a hardcoded failend image for a fixed setting.
 
-The life of a Elm application is described better than I will do by its [creator](https://guide.elm-lang.org/architecture/).
+The life of a Elm application is described better than I will do by its creator in [The Elm Architecture](https://guide.elm-lang.org/architecture/).
 
 The general idea is that, to make an application, you have to answer a few questions.
 
@@ -22,7 +22,7 @@ one data type.
 Imagine that in Javascript, instead of having your data scattered around your application (some associated to DOM nodes, some in a top level object, some in global variables, etc...), you have one root object, and everything should use that.
 
 `elm` has a nice type system, so the "kind" of data you'll manage is stricly defined.
-(So stricly define that it will make you cringe, some times - more on that later.)
+(So stricly defined that it will make you cringe, some times - more on that later.)
 
 In our case, _what are we talking about ?_ We want do display a "tail end" graph, which means we have to give two information :
 
@@ -176,9 +176,10 @@ Add a CSS file :
 /* to create in src/css/style.css */
 body {
     padding: 20px;
-    .container {
-        padding: 20px;
-    }
+}
+
+.container {
+    padding: 20px;
 }
 
 .page {
@@ -232,7 +233,7 @@ And edit your `index.html`
 
 Voila, run `make.sh` again, and you should see something like this :
 
-![A screenshot of a simple tailend]({{ site.url }}/assets/elm-tailend-part-2/tailend_screenshot.png)
+![A screenshot of a simple tailend](/assets/elm-tailend-part-2/tailend_screenshot.png)
 
 Which is not very good looking, but, as far as `elm` is concerned, everything is there.
 We can either make this much prettier (which will only involve CSS), or add some interactivity to the page (in case you want to use other values than 35/90.)
@@ -243,6 +244,6 @@ That's what we'll do in next part !
 
 <br/>
 
-[^1] Really, I mean it, *at least*. I don't want to jinx it for anyone. Live long and prosper, etc...
+[^1]: _Really, I mean it, *at least*. I don't want to jinx it for anyone. Live long and prosper, etc..._
 
-[^2] Seriously, though, give [Handmade Hero](https://handmadehero.org/) a look, if you have like, another couple million hours of you life to spend, or something. Casey Muratori is giving a lot of great insights and advices and programming in a rigourous and non-bullshitty way. What he says mostly applies to native code (in particular games), so it's a rather different world than web dev. And if you're reading this, you probably want to do web dev. So this footnote is 50% name dropping, 50% irrelevant advice. And it's becoming waaay too big.
+[^2]: _Seriously, though, give [Handmade Hero](https://handmadehero.org/) a look, if you have like, another couple million hours of your life to spend, or something. Casey Muratori is giving a lot of great insights and advices and programming in a rigourous and non-bullshitty way. What he says mostly applies to native code (in particular games), so it's a rather different world than web dev. And if you're reading this, you probably want to do web dev. So this footnote is 50% name dropping, 50% irrelevant advice. And it's becoming waaay too big._
