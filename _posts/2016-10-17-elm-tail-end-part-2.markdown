@@ -240,7 +240,7 @@ Voila, run `make.sh` again, and you should see something like this :
 Which is not very good looking, but, as far as `elm` is concerned, everything is there.
 We can either make this much prettier (which will only involve CSS), or add some interactivity to the page (in case you want to use other values than 35/90.)
 
-That's what we'll do in next part !
+That's what we'll do in [next part](/2016/10/21/elm-tail-end-part-3) !
 
 ---
 
