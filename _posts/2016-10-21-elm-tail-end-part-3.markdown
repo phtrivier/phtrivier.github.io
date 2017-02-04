@@ -287,21 +287,21 @@ inputs model =
     div []
         [ input
             [ placeholder "Age"
-            , value (maybeToInt model.age)
+            , value (maybeToString model.age)
             , onInput ChangeAge
             ]
             []
         , input
             [ placeholder "Expected"
-            , value (maybeToInt model.expected)
+            , value (maybeToString model.expected)
             , onInput ChangeExpected
             ]
             []
         ]
 
 
-maybeToInt : Maybe Int -> String
-maybeToInt x =
+maybeToString : Maybe Int -> String
+maybeToString x =
     case x of
         Just a ->
             toString a
@@ -337,7 +337,7 @@ tailendView model =
 This works, but :
 
 * the Maybe's are checked all the time
-* I'm pretty sure there is a shorter way to do `maybeToInt`
+* I'm pretty sure there is a shorter way to do `maybeToString`
 * this still does not prevent the user from typing an age that is
   bigger than her expectancy. And we should use the type system to
   ["make impossible states impossible"](https://www.youtube.com/watch?v=IcgmSRJHu_8&index=13&list=WL).
